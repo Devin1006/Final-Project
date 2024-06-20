@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class SalesPerson {
+    private String name;
+    private String title;
+    private ArrayList<Double> sales;
+
+    // Constructor
+    public SalesPerson(String name, String title, ArrayList<Double> sales) {
+        this.name = name;
+        this.title = title;
+        this.sales = sales;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public ArrayList<Double> getSales() {
+        return sales;
+    }
+
+    // Iterator for sales
+    public Iterator<Double> iterSales() {
+        return sales.iterator();
+    }
+
+    // Calculate total sales
+    public double getTotalSales() {
+        double total = 0;
+        for (double sale : sales) {
+            total += sale;
+        }
+        return total;
+    }
+
+    // Calculate minimum sales
+    public double getMinSales() {
+        double min = Double.MAX_VALUE;
+        for (double sale : sales) {
+            if (sale < min) {
+                min = sale;
+            }
+        }
+        return min;
+    }
+
+    // Calculate maximum sales
+    public double getMaxSales() {
+        double max = Double.MIN_VALUE;
+        for (double sale : sales) {
+            if (sale > max) {
+                max = sale;
+            }
+        }
+        return max;
+    }
+
+    // Calculate average sales
+    public double getAverageSales() {
+        return getTotalSales() / sales.size();
+    }
+}
