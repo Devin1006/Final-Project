@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SalesTrackingProgram {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<SalesPerson> salesPeople = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Please enter sales person name: ");
+            String name = scanner.nextLine();
+            System.out.print("Please enter your sales person title: ");
+            String title = scanner.nextLine();
+            System.out.print("How many sales values will you enter for this sales person? ");
+            int salesCount = scanner.nextInt();
+            ArrayList<Double> sales = new ArrayList<>();
+            for (int j = 0; j < salesCount; j++) {
+                System.out.print("Please enter sales figure for " + name + ": ");
+                sales.add(scanner.nextDouble());
+            }
+            scanner.nextLine(); // consume newline
+            salesPeople.add(new SalesPerson(name, title, sales));
+        }
+
+        System.out.println();
+        double companyTotalSales = 0;
+        for (SalesPerson sp : salesPeople) {
+            System.out.println("Sales person: " + sp.getName());
+            System.out.println("Title: " + sp.getTitle());
+            System.out.println("Total Sales: $" + String.format("%.2f", sp.getTotalSales()));
+            System.out.println("Min Sales: $" + String.format("%.2f", sp.getMinSales()));
+            System.out.println("Max Sales: $" + String.format("%.2f", sp.getMaxSales()));
+            System.out.println("Average Sales: $" + String.format("%.2f", sp.getAverageSales()));
+            System.out.println("----------------------------------------------------");
+            companyTotalSales += sp.getTotalSales();
+        }
+
+        System.out.println("Company total sales: $" + String.format("%.2f", companyTotalSales));
+        scanner.close();
+    }
+}
